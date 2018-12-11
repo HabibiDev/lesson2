@@ -1,0 +1,28 @@
+from turtle import *
+
+def triangle(points):
+	up()
+	goto(points[0][0],points[0][1])
+	down()
+	goto(points[1][0],points[1][1])
+	goto(points[2][0],points[2][1])
+	goto(points[0][0],points[0][1])
+	
+
+def new_point(point1,point2):
+    return ( (point1[0]+point2[0]) / 2, (point1[1] + point2[1]) / 2)
+
+def serpinskogo(points, deep):
+	triangle(points)
+	if deep > 0:
+		serpinskogo([points[0], new_point(points[0], points[1]), new_point(points[0], points[2])], deep-1)
+		serpinskogo([points[1], new_point(points[1], points[0]), new_point(points[1], points[2])], deep-1)
+		serpinskogo([points[2], new_point(points[2], points[0]), new_point(points[2], points[1])], deep-1)
+
+def main():
+	points = [[-200,-100],[0,200],[200,-100]]
+	serpinskogo(points,3)
+	exitonclick()
+
+main()
+
